@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const CreateListingForm = () => {
     const [formData, setFormData] = useState({
+        category: '',
         title: '',
         description: '',
         price: '',
@@ -17,15 +18,16 @@ const CreateListingForm = () => {
         e.preventDefault();
         
         const data = {
+            category: formData.category,
             title: formData.title,
             description: formData.description,
-            price: formData.price,
+            price: parseFloat(formData.price),
             imageUrl: formData.imageUrl,
         };
 
 
         try {
-            const response = await fetch('https://your-api-endpoint.com/submit-listing', {
+            const response = await fetch('http://localhost:8080/ads/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,6 +42,7 @@ const CreateListingForm = () => {
             const result = await response.json();
             console.log('Form submitted successfully:', result);
             setFormData({
+                category: '',
                 title: '',
                 description: '',
                 price: '',
@@ -69,6 +72,22 @@ const CreateListingForm = () => {
                     className="w-full border border-gray-300 p-2 rounded"
                     placeholder="Enter a title"
                     value={formData.title}
+                    onChange={handleInputChange}
+                    required
+                />
+            </div>
+
+            <div className="mb-4">
+                <label htmlFor="category" className="block text-sm font-medium mb-1">
+                    Category
+                </label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    className="w-full border border-gray-300 p-2 rounded"
+                    placeholder="Enter a category"
+                    value={formData.category}
                     onChange={handleInputChange}
                     required
                 />

@@ -6,9 +6,9 @@ const Home = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch("https://api.example.com/items"); // Replace with your API
+        const response = await fetch("http://localhost:8080/ads/get");
         const data = await response.json();
-        setItems(data); // Assuming data is an array
+        setItems(data); // array
       } catch (error) {
         console.error("Error fetching items:", error);
       }
@@ -19,7 +19,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`https://api.example.com/items/${id}`, {
+      await fetch(`http://localhost:8080/ads/${id}`, {
         method: "DELETE",
       });
 
@@ -44,6 +44,7 @@ const Home = () => {
                   className="w-full h-40 object-cover rounded-lg"
                 />
                 <h3 className="text-xl font-bold mt-4">{item.title}</h3>
+                <p className="text-gray-600 mt-2">Category: {item.category}</p>
                 <p className="text-gray-600 mt-2">{item.description}</p>
                 <p className="text-green-600 font-bold mt-2">
                   Rs {item.price}
@@ -67,36 +68,46 @@ const Home = () => {
           {[
             {
               id: 1,
-              image: "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_16pro__erw9alves2qa_xlarge.png",
+              image:
+                "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_16pro__erw9alves2qa_xlarge.png",
               title: "Iphone 16",
+              category: "Electronics",
               description: "salli thiba dawasata gnwa, ethakn na ithin",
               price: "1,000",
             },
             {
               id: 2,
-              image: "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_16__c5bvots96jee_xlarge.png",
+              image:
+                "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_16__c5bvots96jee_xlarge.png",
               title: "Iphone 15",
+              category: "Electronics",
               description: "salli thiba dawasata gnwa, ethakn na ithin",
               price: "2,000",
             },
             {
               id: 3,
-              image: "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_15__buwagff0mwwi_xlarge.png",
+              image:
+                "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_15__buwagff0mwwi_xlarge.png",
               title: "Iphone 14",
+              category: "Electronics",
               description: "salli thiba dawasata gnwa, ethakn na ithin",
               price: "3,000",
             },
             {
               id: 4,
-              image: "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_14__eso1fig4ci6a_xlarge.png",
+              image:
+                "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_14__eso1fig4ci6a_xlarge.png",
               title: "Iphone 13",
+              category: "Electronics",
               description: "salli thiba dawasata gnwa, ethakn na ithin",
               price: "4,000",
             },
             {
               id: 5,
-              image: "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_se__cuaa2bdndqeu_xlarge.png",
+              image:
+                "https://www.apple.com/v/iphone/home/by/images/overview/select/iphone_se__cuaa2bdndqeu_xlarge.png",
               title: "SE 2",
+              category: "Electronics",
               description: "salli thiba dawasata gnwa, ethakn na ithin",
               price: "5,000",
             },
@@ -111,6 +122,7 @@ const Home = () => {
                 className="w-50 h-40 object-cover rounded-lg"
               />
               <h3 className="text-xl font-bold mt-4">{item.title}</h3>
+              <p className="text-gray-600 mt-1">Category: {item.category}</p>
               <p className="text-gray-600 mt-1">{item.description}</p>
               <p className="text-green-600 font-bold mt-1">
                 Rs {item.price}
@@ -123,9 +135,9 @@ const Home = () => {
               </button>
               <button
                 onClick={() => alert(`Add to cart Item ${item.id}`)}
-                className="mt-2 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+                className="mt-2 bg-green-500 text-white py-2 px-7 rounded hover:bg-green-600"
               >
-                Add to cart
+                Update
               </button>
             </div>
           ))}
